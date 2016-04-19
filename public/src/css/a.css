@@ -1,0 +1,7 @@
+main { top: 10px }
+li {
+	animation: spin 3s linear infinite;
+	transition: 5s;
+}
+
+@keyframes spin { 100% { transform:rotate(360deg); } }
