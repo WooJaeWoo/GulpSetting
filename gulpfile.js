@@ -13,6 +13,8 @@ var cleanCSS = require('gulp-clean-css'); // same with gulp-minify-css
 var autoprefixer = require('gulp-autoprefixer');
 // IMG
 var imagemin = require('gulp-imagemin');
+// Test
+var mocha = require('gulp-mocha');
 // Watch
 var livereload = require('gulp-livereload');
 
@@ -63,6 +65,13 @@ gulp.task("img", function () {
         .pipe(gulp.dest(paths.dist + "/img"))
         .pipe(livereload());
 });
+
+/*
+gulp.task("test", function () {
+    return gulp.src( test js path )
+        .pipe(mocha({reporter: 'nyan'}));
+});
+*/
 
 gulp.task('watch', function () {
 	livereload.listen();
