@@ -11,11 +11,14 @@ var streamqueue = require('streamqueue');
 var concatCss = require('gulp-concat-css');
 var cleanCSS = require('gulp-clean-css'); // same with gulp-minify-css
 var autoprefixer = require('gulp-autoprefixer');
+// IMG
+var imagemin = require('gulp-imagemin');
 
 var src = "./public/src";
 var paths = {
 	js: src + "/js/**/*.js",
 	css: src + "/css/**/*.css",
+    img: src + "/img/**/*",
 	dist: "./public/dist",
 };
 
@@ -29,7 +32,7 @@ gulp.task("js", function() {
 		.pipe(jshint())
 		.pipe(jshint.reporter(stylish))
 		.pipe(uglify())
-		.pipe(gulp.dest("./public/dist/js/"));
+		.pipe(gulp.dest(paths.dist + "/js"));
 });
 
 gulp.task("css", function() {
@@ -43,7 +46,17 @@ gulp.task("css", function() {
 			console.log(details.name + "(min): " + details.stats.minifiedSize + " Kb");
 		}))
 		.pipe(autoprefixer())
-		.pipe(gulp.dest("./public/dist/css/"));
+		.pipe(gulp.dest(paths.dist + "/css"));
+});
+
+gulp.task('img', function () {
+    return gulp.src(paths.img)
+        .pipe(imagemin({
+            optimizationLevel: 3,
+            progressive: true,
+            interlaced: true
+        }))
+        .pipe(gulp.dest(paths.dist + "/img"))
 });
 
 gulp.task("build", ["js", "css"]);
