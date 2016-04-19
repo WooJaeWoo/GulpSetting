@@ -13,6 +13,8 @@ var cleanCSS = require('gulp-clean-css'); // same with gulp-minify-css
 var autoprefixer = require('gulp-autoprefixer');
 // IMG
 var imagemin = require('gulp-imagemin');
+// Watch
+var livereload = require('gulp-livereload');
 
 var src = "./public/src";
 var paths = {
@@ -32,7 +34,8 @@ gulp.task("js", function() {
 		.pipe(jshint())
 		.pipe(jshint.reporter(stylish))
 		.pipe(uglify())
-		.pipe(gulp.dest(paths.dist + "/js"));
+		.pipe(gulp.dest(paths.dist + "/js"))
+        .pipe(livereload());
 });
 
 gulp.task("css", function() {
@@ -46,10 +49,11 @@ gulp.task("css", function() {
 			console.log(details.name + "(min): " + details.stats.minifiedSize + " Kb");
 		}))
 		.pipe(autoprefixer())
-		.pipe(gulp.dest(paths.dist + "/css"));
+		.pipe(gulp.dest(paths.dist + "/css"))
+        .pipe(livereload());
 });
 
-gulp.task('img', function () {
+gulp.task("img", function () {
     return gulp.src(paths.img)
         .pipe(imagemin({
             optimizationLevel: 3,
@@ -57,6 +61,16 @@ gulp.task('img', function () {
             interlaced: true
         }))
         .pipe(gulp.dest(paths.dist + "/img"))
+        .pipe(livereload());
 });
 
-gulp.task("build", ["js", "css"]);
+gulp.task('watch', function () {
+	livereload.listen();
+	gulp.watch(paths.js, ["js"]);
+	gulp.watch(paths.css, ["css"]);
+    gulp.watch(paths.img, ["img"]);
+});
+
+gulp.task("build", ["js", "css"/*, "img"*/]);
+
+
