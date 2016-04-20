@@ -1,25 +1,26 @@
 "use strict";
 
-var gulp = require('gulp');
+const gulp = require('gulp');
 // JS
-var concat = require('gulp-concat');
-var jshint = require('gulp-jshint');
-var stylish = require('jshint-stylish');
-var uglify = require('gulp-uglify');
+const concat = require('gulp-concat'),
+	jshint = require('gulp-jshint'),
+	stylish = require('jshint-stylish'),
+	uglify = require('gulp-uglify');
 // CSS
-var streamqueue = require('streamqueue');
-var concatCss = require('gulp-concat-css');
-var cleanCSS = require('gulp-clean-css'); // same with gulp-minify-css
-var autoprefixer = require('gulp-autoprefixer');
+const streamqueue = require('streamqueue'),
+	concatCss = require('gulp-concat-css'),
+	cleanCSS = require('gulp-clean-css'), // same with gulp-minify-css
+	autoprefixer = require('gulp-autoprefixer');
 // IMG
-var imagemin = require('gulp-imagemin');
+const imagemin = require('gulp-imagemin');
 // Test
-var mocha = require('gulp-mocha');
+const mocha = require('gulp-mocha');
 // Watch
-var livereload = require('gulp-livereload');
+const livereload = require('gulp-livereload');
 
-var src = "./public/src";
-var paths = {
+// Paths
+const src = "./public/src";
+const paths = {
 	js: src + "/js/**/*.js",
 	css: src + "/css/**/*.css",
     img: src + "/img/**/*",
@@ -80,6 +81,7 @@ gulp.task('watch', function () {
     gulp.watch(paths.img, ["img"]);
 });
 
+// Uncomment to build img files
 gulp.task("build", ["js", "css"/*, "img"*/]);
 
 
