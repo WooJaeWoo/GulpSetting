@@ -14,7 +14,7 @@ const streamqueue = require('streamqueue'),
 // IMG
 const imagemin = require('gulp-imagemin');
 // Test
-const mocha = require('gulp-mocha');
+// const mocha = require('gulp-mocha');
 // Watch
 const livereload = require('gulp-livereload');
 

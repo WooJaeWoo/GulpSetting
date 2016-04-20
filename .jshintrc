@@ -4,9 +4,11 @@
 
 	"jquery"		: true,
 	"browser"		: true,
+	"node"          : true,
 
-	"strict"		: false,
 	"globalstrict"	: false,
+	"strict"		: false,
+	"esversion"		: 6,
 
 	"undef" 		: true,
 	"unused"		: true
