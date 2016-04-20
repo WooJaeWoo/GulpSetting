@@ -67,7 +67,10 @@ gulp.task("img", function () {
         .pipe(livereload());
 });
 
-/*
+
+// Uncomment when need to test
+// TODO: make some Mocha code for example
+/* 
 gulp.task("test", function () {
     return gulp.src( test js path )
         .pipe(mocha({reporter: 'nyan'}));
@@ -80,6 +83,28 @@ gulp.task('watch', function () {
 	gulp.watch(paths.css, ["css"]);
     gulp.watch(paths.img, ["img"]);
 });
+
+
+// TODO: cannot sure whether need or not
+// gulp babel compile code
+/*const babel = require('gulp-babel');
+
+// compile react
+gulp.task('react', function(){
+    return gulp.src([ 'src/!(index)*.jsx', 'src/index.jsx'])
+        .pipe(babel({
+            plugins : ['transform-react-jsx'],
+            presets : ['es2015']
+        }))
+        .pipe(uglify())
+        .pipe(concat('app.js', { newLine: '\n' }))
+        .pipe(gulp.dest("dist"));
+});
+
+gulp.task('react:watch', function(){
+    gulp.watch('src/*.jsx', ['react']);
+});
+*/
 
 // Uncomment to build img files
 gulp.task("build", ["js", "css"/*, "img"*/]);
